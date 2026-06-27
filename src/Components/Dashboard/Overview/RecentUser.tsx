@@ -13,7 +13,7 @@ const RecentUser = () => {
   const columns: Column<IRecentUser>[] = [
     {
       header: "ID",
-      accessorKey: "_id",
+      accessorKey: "id",
       width: 60,
       render: (_: unknown, __: unknown, index: number) => (
         <span className="font-medium text-gray-700">{index + 1}</span>
@@ -73,7 +73,7 @@ const RecentUser = () => {
         pagination={false}
         scroll={true}
         isLoading={isFetching}
-        setCurrentPage={() => {}}
+        setCurrentPage={() => { }}
         limit={recentUsers.length || 10}
       />
     </div>

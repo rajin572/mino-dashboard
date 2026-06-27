@@ -151,13 +151,13 @@ const ViewPassengerModal = ({
                                     Warning Logs
                                 </span>
                             </div>
-                            <span className="bg-white/20 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                            <span className="bg-white text-amber-500 text-xs font-bold px-2 py-0.5 rounded-full">
                                 {warningLogs.length}
                             </span>
                         </div>
                         <div className="divide-y divide-amber-100 bg-amber-50">
                             {warningLogs.map((log, i) => (
-                                <div key={log._id} className="flex gap-3 px-4 py-3">
+                                <div key={log.id} className="flex gap-3 px-4 py-3">
                                     <span className="w-5 h-5 rounded-full bg-amber-500 text-white text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">
                                         {i + 1}
                                     </span>

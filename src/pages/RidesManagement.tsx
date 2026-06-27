@@ -55,7 +55,7 @@ const RidesManagementPage = () => {
     const columns: Column<IRide>[] = [
         {
             header: "#",
-            accessorKey: "_id",
+            accessorKey: "id",
             fixed: true,
             width: 60,
             render: (_: unknown, __: IRide, index: number) => (
@@ -92,24 +92,22 @@ const RidesManagementPage = () => {
         },
         {
             header: "Pickup",
-            accessorKey: "pickupLocation",
-            render: (value: IRideLocation) => {
-                const addr = value?.address ?? "—";
+            accessorKey: "pickupAddress",
+            render: (value: string) => {
                 return (
-                    <span title={addr} className="block max-w-56 truncate text-xs">
-                        {addr}
+                    <span title={value} className="block max-w-56 truncate text-xs">
+                        {value}
                     </span>
                 );
             },
         },
         {
             header: "Dropoff",
-            accessorKey: "dropoffLocation",
-            render: (value: IRideLocation) => {
-                const addr = value?.address ?? "—";
+            accessorKey: "dropoffAddress",
+            render: (value: string) => {
                 return (
-                    <span title={addr} className="block max-w-56 truncate text-xs">
-                        {addr}
+                    <span title={value} className="block max-w-56 truncate text-xs">
+                        {value}
                     </span>
                 );
             },
@@ -140,7 +138,7 @@ const RidesManagementPage = () => {
         },
         {
             header: "Action",
-            accessorKey: "_id",
+            accessorKey: "id",
             render: (_: unknown, record: IRide) => (
                 <ReusableTooltip content="View Details">
                     <IoEyeOutline

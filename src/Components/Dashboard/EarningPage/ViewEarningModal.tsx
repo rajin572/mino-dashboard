@@ -46,7 +46,7 @@ const ViewEarningModal = ({
     currentRecord: IPayment | null;
 }) => {
     const serverUrl = getImageUrl();
-    const passenger = currentRecord?.passengerId;
+    const passenger = currentRecord?.passenger;
 
     const statusColor =
         currentRecord?.paymentStatus === 'PAID'

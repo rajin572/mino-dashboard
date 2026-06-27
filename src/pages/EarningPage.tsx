@@ -41,7 +41,7 @@ const EarningPage = () => {
     const columns: Column<IPayment>[] = [
         {
             header: "#",
-            accessorKey: "_id",
+            accessorKey: "id",
             fixed: true,
             width: 60,
             render: (_: unknown, __: IPayment, index: number) => (
@@ -57,7 +57,7 @@ const EarningPage = () => {
         },
         {
             header: "Passenger",
-            accessorKey: "passengerId",
+            accessorKey: "passenger",
             render: (value: IPaymentPassenger) => (
                 <div className="flex items-center gap-2">
                     <img
@@ -116,7 +116,7 @@ const EarningPage = () => {
         },
         {
             header: "Action",
-            accessorKey: "_id",
+            accessorKey: "id",
             render: (_: unknown, record: IPayment) => (
                 <ReusableTooltip content="View Details">
                     <IoEyeOutline

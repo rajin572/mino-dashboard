@@ -23,7 +23,7 @@ const ViewReportModal = ({
 
   if (!currentRecord) return null;
 
-  const { reportedBy, reportedUser, rideId, reason, details, status, createdAt } = currentRecord;
+  const { reportedBy, reportedUser, ride, reason, details, status, createdAt } = currentRecord;
 
   return (
     <ReusableModal
@@ -50,11 +50,11 @@ const ViewReportModal = ({
             </div>
             <div>
               <h5 className="text-xs sm:text-sm font-semibold text-muted-foreground">Ride ID</h5>
-              <p className="text-sm sm:text-base font-medium">{rideId?.rideId ?? "—"}</p>
+              <p className="text-sm sm:text-base font-medium">{ride?.rideId ?? "—"}</p>
             </div>
             <div>
               <h5 className="text-xs sm:text-sm font-semibold text-muted-foreground">Ride Status</h5>
-              <p className="text-sm sm:text-base font-medium capitalize">{rideId?.status?.toLowerCase() ?? "—"}</p>
+              <p className="text-sm sm:text-base font-medium capitalize">{ride?.status?.toLowerCase() ?? "—"}</p>
             </div>
           </div>
         </div>

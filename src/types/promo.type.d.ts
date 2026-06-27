@@ -1,5 +1,5 @@
 interface IPromo {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   discount: number;

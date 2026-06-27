@@ -1,5 +1,5 @@
 interface IWarningLog {
-  _id: string;
+  id: string;
   warnedAt: string;
   warnedBy: string;
   reason?: string;
@@ -11,7 +11,7 @@ interface IWarnings {
 }
 
 interface IUser {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   countryCode: string;

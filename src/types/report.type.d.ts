@@ -1,11 +1,11 @@
 interface IReportRide {
-  _id: string;
+  id: string;
   status: string;
   rideId: string;
 }
 
 interface IReportUser {
-  _id: string;
+  id: string;
   name: string;
   email?: string;
   role: string;
@@ -13,8 +13,8 @@ interface IReportUser {
 }
 
 interface IReport {
-  _id: string;
-  rideId: IReportRide;
+  id: string;
+  ride: IReportRide;
   reportedBy: IReportUser;
   reportedUser: IReportUser;
   reason: string;

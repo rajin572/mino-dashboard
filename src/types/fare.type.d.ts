@@ -17,7 +17,7 @@ interface IFareSurcharge {
 }
 
 interface IFare {
-  _id: string;
+  id: string;
   country: string;
   minoGo: IFareVehicle;
   minoXL: IFareVehicle;

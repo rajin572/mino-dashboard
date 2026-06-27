@@ -52,7 +52,7 @@ const PromoPage = () => {
   const handleDeleteConfirm = async (promo: IPromo) => {
     await tryCatchWrapper(
       deletePromo,
-      { params: { id: promo._id } },
+      { params: { id: promo.id } },
       "Deleting Promo..."
     );
     setIsDeleteOpen(false);
@@ -63,7 +63,7 @@ const PromoPage = () => {
     const newStatus = promo.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
     await tryCatchWrapper(
       updatePromo,
-      { params: { id: promo._id }, body: { status: newStatus } },
+      { params: { id: promo.id }, body: { status: newStatus } },
       "Updating status..."
     );
   };
@@ -84,7 +84,7 @@ const PromoPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {promos.map((promo) => (
             <PromoCard
-              key={promo._id}
+              key={promo.id}
               promo={promo}
               onEdit={handleEdit}
               onDelete={handleDeleteClick}

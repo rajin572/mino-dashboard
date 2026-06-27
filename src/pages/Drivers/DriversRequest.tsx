@@ -40,7 +40,7 @@ const DriversRequestPage = () => {
     const columns: Column<IDriver>[] = [
         {
             header: "#",
-            accessorKey: "_id",
+            accessorKey: "id",
             fixed: true,
             width: 60,
             render: (_: unknown, __: IDriver, index: number) => (
@@ -80,12 +80,12 @@ const DriversRequestPage = () => {
         },
         {
             header: "Vehicle Type",
-            accessorKey: "driverProfileId",
+            accessorKey: "driverProfile",
             render: (value: IDriverProfile | null) => value?.vehicleType?.replace(/_/g, ' ') || "—",
         },
         {
             header: "License No.",
-            accessorKey: "driverProfileId",
+            accessorKey: "driverProfile",
             render: (value: IDriverProfile | null) => (
                 <span className="font-mono text-xs">{value?.licenseNumber || "—"}</span>
             ),
@@ -109,7 +109,7 @@ const DriversRequestPage = () => {
         },
         {
             header: "Action",
-            accessorKey: "_id",
+            accessorKey: "id",
             render: (_: unknown, record: IDriver) => (
                 <ReusableTooltip content="View & Manage">
                     <IoEyeOutline

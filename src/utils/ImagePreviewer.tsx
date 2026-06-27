@@ -49,7 +49,7 @@ const ImagePreviewer = ({
           <img
             src={fileUrl}
             alt="Image"
-            className={`cursor-pointer h-32 object-cover object-top rounded-md border border-[#0F75BD] ${msg?.sender?._id === userData?.userId ||
+            className={`cursor-pointer h-32 object-cover object-top rounded-md border border-[#0F75BD] ${msg?.sender?.id === userData?.userId ||
               msg?.sender?.toString() === userData?.userId
               ? "order-last"
               : "order-first"

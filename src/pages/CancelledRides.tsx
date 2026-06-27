@@ -19,6 +19,19 @@ const CancelledRidesPage = () => {
     const limit = 10;
     const serverUrl = getImageUrl();
 
+
+    const statusTheme = (status: string): 'success' | 'error' | 'warning' | 'blue' | 'purple' | 'orange' => {
+        switch (status) {
+            case 'COMPLETED': return 'success';
+            case 'CANCELLED': return 'error';
+            case 'ONGOING': return 'blue';
+            case 'ACCEPTED': return 'purple';
+            case 'REQUESTED': return 'warning';
+            default: return 'orange';
+        }
+    };
+
+
     const { data, isFetching } = useGetAdminRidesQuery({
         page: currentPage,
         limit,
@@ -42,7 +55,7 @@ const CancelledRidesPage = () => {
     const columns: Column<IRide>[] = [
         {
             header: "#",
-            accessorKey: "_id",
+            accessorKey: "id",
             fixed: true,
             width: 60,
             render: (_: unknown, __: IRide, index: number) => (
@@ -99,6 +112,15 @@ const CancelledRidesPage = () => {
             render: (value: number) => <span className="font-semibold">${value}</span>,
         },
         {
+            header: "Status",
+            accessorKey: "status",
+            render: (value: string) => (
+                <Tag theme={statusTheme(value)}>
+                    {value?.charAt(0) + value?.slice(1).toLowerCase()}
+                </Tag>
+            ),
+        },
+        {
             header: "Payment",
             accessorKey: "paymentStatus",
             render: (value: string) => (
@@ -114,7 +136,7 @@ const CancelledRidesPage = () => {
         },
         {
             header: "Action",
-            accessorKey: "_id",
+            accessorKey: "id",
             render: (_: unknown, record: IRide) => (
                 <ReusableTooltip content="View Details">
                     <IoEyeOutline

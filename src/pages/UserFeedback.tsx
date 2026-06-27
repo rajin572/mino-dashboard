@@ -20,7 +20,7 @@ const UserFeedback = () => {
     const columns: Column<IFeedback>[] = [
         {
             header: "ID",
-            accessorKey: "_id",
+            accessorKey: "id",
             width: 60,
             render: (_: any, __: any, index: number) => (
                 <span className="font-medium text-gray-700">
@@ -30,7 +30,7 @@ const UserFeedback = () => {
         },
         {
             header: "User",
-            accessorKey: "userId",
+            accessorKey: "user",
             render: (value: IFeedbackUser) => (
                 <div className="flex items-center gap-2">
                     <img
@@ -44,7 +44,7 @@ const UserFeedback = () => {
         },
         {
             header: "Role",
-            accessorKey: "userId",
+            accessorKey: "user",
             render: (value: IFeedbackUser) => (
                 <span className="capitalize">{value.role}</span>
             ),

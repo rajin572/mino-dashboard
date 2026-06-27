@@ -1,14 +1,14 @@
 interface IPaymentPassenger {
-    _id: string;
+    id: string;
     name: string;
     phoneNumber: string;
     profileImage: string;
 }
 
 interface IPayment {
-    _id: string;
+    id: string;
     rideId: string;
-    passengerId: IPaymentPassenger;
+    passenger: IPaymentPassenger;
     driverId: string;
     totalFare: number;
     amount: number;

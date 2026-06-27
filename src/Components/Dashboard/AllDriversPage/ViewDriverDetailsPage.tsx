@@ -108,7 +108,7 @@ const ViewDriverDetailsPage = ({
     approvalModal?: boolean;
 }) => {
     const serverUrl = getImageUrl();
-    const profile = currentRecord?.driverProfileId;
+    const profile = currentRecord?.driverProfile;
     const isBanned = currentRecord?.status === "banned";
     const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
 
@@ -126,25 +126,25 @@ const ViewDriverDetailsPage = ({
         try {
             if (confirmAction === "ban") {
                 await banUser({
-                    userId: currentRecord._id,
+                    userId: currentRecord.id,
                     reason: reason || "Banned by admin",
                 }).unwrap();
                 toast.success("Driver banned successfully");
             } else if (confirmAction === "unban") {
-                await unbanUser({ userId: currentRecord._id }).unwrap();
+                await unbanUser({ userId: currentRecord.id }).unwrap();
                 toast.success("Driver unbanned successfully");
             } else if (confirmAction === "warn") {
                 await warnUser({
-                    userId: currentRecord._id,
+                    userId: currentRecord.id,
                     reason: reason || "",
                 }).unwrap();
                 toast.success("Warning sent successfully");
             } else if (confirmAction === "approve") {
-                await approveDriver({ driverId: currentRecord._id }).unwrap();
+                await approveDriver({ driverId: currentRecord.id }).unwrap();
                 toast.success("Driver approved successfully");
             } else if (confirmAction === "reject") {
                 await rejectDriver({
-                    userId: currentRecord._id,
+                    userId: currentRecord.id,
                     reason: reason || "",
                 }).unwrap();
                 toast.success("Driver rejected");
@@ -292,7 +292,7 @@ const ViewDriverDetailsPage = ({
                                 size={16}
                                 showValue
                             />
-                            <span className="text-[10px] text-muted-foreground capitalize">
+                            <span className="text-sm text-muted-foreground capitalize">
                                 {currentRecord?.driverType || "—"}
                             </span>
                         </div>
@@ -398,16 +398,17 @@ const ViewDriverDetailsPage = ({
                                         : ""
                                 }
                             />
-                            <InfoRow
-                                icon={<Wifi className="size-3.5" />}
-                                label="On Ride"
-                                value={
-                                    <Tag theme={profile?.isOnRide ? "blue" : "warning"}>
-                                        {profile?.isOnRide ? "Yes" : "No"}
-                                    </Tag>
-                                }
-                            />
-                            <InfoRow
+                            {!approvalModal &&
+                                <InfoRow
+                                    icon={<Wifi className="size-3.5" />}
+                                    label="On Ride"
+                                    value={
+                                        <Tag theme={profile?.isOnRide ? "blue" : "warning"}>
+                                            {profile?.isOnRide ? "Yes" : "No"}
+                                        </Tag>
+                                    }
+                                />}
+                            {/* <InfoRow
                                 icon={<Calendar className="size-3.5" />}
                                 label="Home Address"
                                 value={
@@ -420,7 +421,7 @@ const ViewDriverDetailsPage = ({
                                         )}
                                     </div>
                                 }
-                            />
+                            /> */}
                             <InfoRow
                                 icon={<Calendar className="size-3.5" />}
                                 label="Joined"
@@ -570,13 +571,13 @@ const ViewDriverDetailsPage = ({
                                         Warning Logs
                                     </p>
                                 </div>
-                                <span className="bg-white/20 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                <span className="bg-white text-amber-500 text-xs font-bold px-2 py-0.5 rounded-full">
                                     {currentRecord?.warnings?.count}
                                 </span>
                             </div>
                             <div className="px-4 py-3 bg-amber-50 flex flex-col gap-3">
                                 {currentRecord?.warnings?.logs.map((log) => (
-                                    <div key={log._id} className="flex flex-col gap-0.5 text-xs">
+                                    <div key={log.id} className="flex flex-col gap-0.5 text-xs">
                                         <p className="font-semibold text-amber-800">
                                             {log.reason || "No reason provided"}
                                         </p>

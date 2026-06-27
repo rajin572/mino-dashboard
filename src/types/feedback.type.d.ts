@@ -1,13 +1,13 @@
 interface IFeedbackUser {
-  _id: string;
+  id: string;
   name: string;
   role: string;
   profileImage: string;
 }
 
 interface IFeedback {
-  _id: string;
-  userId: IFeedbackUser;
+  id: string;
+  user: IFeedbackUser;
   rating: number;
   text: string;
   adminVerified: "verified" | "pending" | "rejected";

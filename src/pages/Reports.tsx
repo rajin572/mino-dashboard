@@ -48,7 +48,7 @@ const ReportsPage = () => {
     const handleResolve = async (record: IReport) => {
         await tryCatchWrapper(
             resolveReport,
-            { params: { id: record._id }, body: { status: "resolved" } },
+            { params: { id: record.id }, body: { status: "resolved" } },
             "Resolving report..."
         );
         handleCloseModal();
@@ -57,7 +57,7 @@ const ReportsPage = () => {
     const columns: Column<IReport>[] = [
         {
             header: "ID",
-            accessorKey: "_id",
+            accessorKey: "id",
             width: 60,
             render: (_: any, __: any, index: number) => (
                 <span className="font-medium text-gray-700">
@@ -101,7 +101,7 @@ const ReportsPage = () => {
         },
         {
             header: "Ride ID",
-            accessorKey: "rideId",
+            accessorKey: "ride",
             render: (value: IReportRide) => value?.rideId ?? "—",
         },
         {
@@ -126,7 +126,7 @@ const ReportsPage = () => {
         },
         {
             header: "Action",
-            accessorKey: "_id",
+            accessorKey: "id",
             render: (_: any, record: IReport) => (
                 <ReusableTooltip content="View Details">
                     <IoEyeOutline

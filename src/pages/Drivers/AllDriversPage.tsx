@@ -41,7 +41,7 @@ const AllDriversPage = () => {
     const columns: Column<IDriver>[] = [
         {
             header: "#",
-            accessorKey: "_id",
+            accessorKey: "id",
             fixed: true,
             width: 60,
             render: (_: unknown, __: IDriver, index: number) => (
@@ -81,7 +81,7 @@ const AllDriversPage = () => {
         },
         {
             header: "Vehicle Type",
-            accessorKey: "driverProfileId",
+            accessorKey: "driverProfile",
             render: (value: IDriverProfile | null) => value?.vehicleType?.replace(/_/g, ' ') || "—",
         },
         {
@@ -105,7 +105,7 @@ const AllDriversPage = () => {
         },
         {
             header: "Action",
-            accessorKey: "_id",
+            accessorKey: "id",
             render: (_: unknown, record: IDriver) => (
                 <ReusableTooltip content="View Details">
                     <IoEyeOutline

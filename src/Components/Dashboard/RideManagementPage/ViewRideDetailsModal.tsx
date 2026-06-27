@@ -142,33 +142,33 @@ const ViewRideDetailsModal = ({
                             <div className="pb-5 flex-1">
                                 <p className="text-xs text-muted-foreground font-medium mb-0.5">Pickup</p>
                                 <p className="text-sm font-semibold text-foreground">
-                                    {currentRecord?.pickupLocation?.address || '—'}
+                                    {currentRecord?.pickupAddress || '—'}
                                 </p>
-                                {currentRecord?.pickupLocation?.location?.coordinates && (
+                                {/* {currentRecord?.pickupLocation?.location?.coordinates && (
                                     <p className="text-xs text-muted-foreground font-mono mt-1">
                                         {currentRecord.pickupLocation.location.coordinates[1]}, {currentRecord.pickupLocation.location.coordinates[0]}
                                     </p>
-                                )}
+                                )} */}
                             </div>
                         </div>
                         {/* Dropoff row */}
                         <div className="flex gap-4">
                             <div className="flex flex-col items-center shrink-0">
                                 <MapPin className="size-4 text-red-500 shrink-0" />
-                                {currentRecord?.actualDropoffLocation && (
+                                {currentRecord?.dropoffAddress && (
                                     <div className="w-px flex-1 bg-border mt-2" />
                                 )}
                             </div>
-                            <div className={`flex-1 ${currentRecord?.actualDropoffLocation ? 'pb-5' : ''}`}>
+                            <div className={`flex-1 ${currentRecord?.dropoffAddress ? 'pb-5' : ''}`}>
                                 <p className="text-xs text-muted-foreground font-medium mb-0.5">Dropoff</p>
                                 <p className="text-sm font-semibold text-foreground">
-                                    {currentRecord?.dropoffLocation?.address || '—'}
+                                    {currentRecord?.dropoffAddress || '—'}
                                 </p>
-                                {currentRecord?.dropoffLocation?.location?.coordinates && (
+                                {/* {currentRecord?.dropoffLocation?.location?.coordinates && (
                                     <p className="text-xs text-muted-foreground font-mono mt-1">
                                         {currentRecord.dropoffLocation.location.coordinates[1]}, {currentRecord.dropoffLocation.location.coordinates[0]}
                                     </p>
-                                )}
+                                )} */}
                             </div>
                         </div>
                         {/* Actual Dropoff row (conditional) */}
@@ -340,7 +340,7 @@ const ViewRideDetailsModal = ({
                         <SectionHeader title="Status History" />
                         <div className="px-4 py-3 flex flex-col gap-2">
                             {currentRecord?.statusHistory.map((h, i) => (
-                                <div key={h._id} className="flex items-center gap-3">
+                                <div key={h.id} className="flex items-center gap-3">
                                     <div className="flex flex-col items-center shrink-0">
                                         <div className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-primary' : 'bg-border'}`} />
                                         {i < (currentRecord.statusHistory.length - 1) && <div className="w-px h-4 bg-border" />}

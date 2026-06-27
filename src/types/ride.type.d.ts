@@ -1,11 +1,11 @@
 interface IRidePassenger {
-    _id: string;
+    id: string;
     name: string;
     profileImage: string;
 }
 
 interface IRideDriver {
-    _id: string;
+    id: string;
 }
 
 interface IRideLocation {
@@ -17,7 +17,7 @@ interface IRideLocation {
 }
 
 interface IRideStatusHistory {
-    _id: string;
+    id: string;
     status: string;
     changedAt: string;
 }
@@ -29,13 +29,15 @@ interface IRideReview {
 }
 
 interface IRide {
-    _id: string;
+    id: string;
     rideId: string;
     country: string;
     passenger: IRidePassenger;
     driver: IRideDriver;
     serviceType: string;
     vehicleCategory: string;
+    pickupAddress: string;
+    dropoffAddress: string;
     pickupLocation: IRideLocation;
     dropoffLocation: IRideLocation;
     actualDropoffLocation: IRideLocation | null;

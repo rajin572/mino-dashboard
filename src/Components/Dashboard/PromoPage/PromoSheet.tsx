@@ -80,7 +80,7 @@ const PromoSheet = ({ open, onClose, editRecord }: PromoSheetProps) => {
     if (editRecord) {
       res = await tryCatchWrapper(
         updatePromo,
-        { params: { id: editRecord._id }, body: payload },
+        { params: { id: editRecord.id }, body: payload },
         "Updating Promo..."
       );
     } else {

@@ -33,7 +33,7 @@ interface UseInfiniteScrollProps<T, Q> {
   metaSelector: (data: any) => { totalPage: number }; // extract pagination meta from data
 }
 
-function useInfiniteScroll<T extends { _id: string }, Q>({
+function useInfiniteScroll<T extends { id: string }, Q>({
   query,
   items,
   setItems,
@@ -57,7 +57,7 @@ function useInfiniteScroll<T extends { _id: string }, Q>({
     if (newItems.length) {
       setItems((prev) => {
         const unique = newItems.filter(
-          (item) => !prev.some((existing) => existing._id === item._id)
+          (item) => !prev.some((existing) => existing.id === item.id)
         );
         return [...prev, ...unique];
       });

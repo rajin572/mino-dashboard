@@ -4,7 +4,7 @@ interface ITokenUser {
   profileImage: string;
   email: string;
   role: string;
-  driverProfileId: string;
+  driverProfile: string;
   country: string;
   iat: number;
   exp: number;

@@ -65,10 +65,10 @@ const PassengerPage = () => {
     const handleBanConfirm = async (record: IUser, reason?: string) => {
         try {
             if (record.status === "banned") {
-                await unbanUser({ userId: record._id }).unwrap();
+                await unbanUser({ userId: record.id }).unwrap();
                 toast.success("User unbanned successfully");
             } else {
-                await banUser({ userId: record._id, reason: reason ?? "" }).unwrap();
+                await banUser({ userId: record.id, reason: reason ?? "" }).unwrap();
                 toast.success("User banned successfully");
             }
             setIsBanModalOpen(false);
@@ -80,7 +80,7 @@ const PassengerPage = () => {
 
     const handleWarnConfirm = async (record: IUser, reason?: string) => {
         try {
-            await warnUser({ userId: record._id, reason: reason ?? "" }).unwrap();
+            await warnUser({ userId: record.id, reason: reason ?? "" }).unwrap();
             toast.success("Warning sent successfully");
             setIsWarnModalOpen(false);
             setCurrentRecord(null);
@@ -94,7 +94,7 @@ const PassengerPage = () => {
     const columns: Column<IUser>[] = [
         {
             header: "ID",
-            accessorKey: "_id",
+            accessorKey: "id",
             headerClassName: "",
             cellClassName: "font-medium",
             fixed: true,

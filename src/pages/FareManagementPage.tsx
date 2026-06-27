@@ -84,7 +84,7 @@ export default function FareManagement() {
       platformCommissionPercentage: record.platformCommissionPercentage,
     });
     setIsEditMode(true);
-    setEditId(record._id);
+    setEditId(record.id);
     setView("create");
   };
 
@@ -112,7 +112,7 @@ export default function FareManagement() {
   // ── Delete ─────────────────────────────────────────────────────────────────
 
   const handleDelete = async (record: IFare) => {
-    await tryCatchWrapper(deleteFare, { params: { id: record._id } }, "Deleting fare...");
+    await tryCatchWrapper(deleteFare, { params: { id: record.id } }, "Deleting fare...");
     setDeleteRecord(null);
   };
 
@@ -121,7 +121,7 @@ export default function FareManagement() {
   const columns: Column<IFare>[] = [
     {
       header: "ID",
-      accessorKey: "_id",
+      accessorKey: "id",
       width: 60,
       render: (_: unknown, __: unknown, index: number) => (
         <span className="font-medium text-gray-700">
@@ -168,7 +168,7 @@ export default function FareManagement() {
     },
     {
       header: "Actions",
-      accessorKey: "_id",
+      accessorKey: "id",
       render: (_: unknown, record: IFare) => (
         <div className="flex items-center gap-3">
           <ReusableTooltip content="View Details">

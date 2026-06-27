@@ -9,7 +9,7 @@ interface IDriverHomeAddress {
 }
 
 interface IDriverProfile {
-  _id: string;
+  id: string;
   userId: string;
   driverType: string;
   licenseNumber: string;
@@ -39,7 +39,7 @@ interface IDriverProfile {
 }
 
 interface IDriver {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   countryCode: string;
@@ -63,7 +63,7 @@ interface IDriver {
   bannedBy: string | null;
   isDeleted: boolean;
   country: string;
-  driverProfileId: IDriverProfile | null;
+  driverProfile: IDriverProfile | null;
   createdAt: string;
   updatedAt: string;
 }
