@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 import { FormInput } from "@/Components/ui/CustomUi/ReuseForm/Form";
 
 interface VehicleSectionProps {
@@ -17,7 +16,7 @@ const VehicleSection = ({ title, prefix, control }: VehicleSectionProps) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormInput
             control={control}
-            name={`${prefix}.ratePerKm`}
+            name={`${prefix}RatePerKm`}
             label="Rate per km ($)"
             description="Charged for distance travelled during the trip."
             type="number"
@@ -25,7 +24,7 @@ const VehicleSection = ({ title, prefix, control }: VehicleSectionProps) => {
           />
           <FormInput
             control={control}
-            name={`${prefix}.bookingFee`}
+            name={`${prefix}BookingFee`}
             label="Booking Fee ($)"
             description="If calculated total is below this, charge the minimum fare."
             type="number"
@@ -33,7 +32,7 @@ const VehicleSection = ({ title, prefix, control }: VehicleSectionProps) => {
           />
           <FormInput
             control={control}
-            name={`${prefix}.baseFee`}
+            name={`${prefix}BaseFee`}
             label="Base fare ($)"
             description="Start fee added to every trip."
             type="number"
@@ -41,7 +40,7 @@ const VehicleSection = ({ title, prefix, control }: VehicleSectionProps) => {
           />
           <FormInput
             control={control}
-            name={`${prefix}.minimumFare`}
+            name={`${prefix}MinimumFare`}
             label="Minimum fare ($)"
             description="If calculated total is below this, charge the minimum fare."
             type="number"

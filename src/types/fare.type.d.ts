@@ -1,31 +1,32 @@
-interface IFareVehicle {
-  ratePerKm: number;
-  bookingFee: number;
-  baseFee: number;
-  minimumFare: number;
-}
-
-interface IFareWaitingCharge {
-  enabled: boolean;
-  gracePeriod: number;
-  rate: number;
-}
-
-interface IFareSurcharge {
-  enabled: boolean;
-  value: number;
-}
-
 interface IFare {
   id: string;
   country: string;
-  minoGo: IFareVehicle;
-  minoXL: IFareVehicle;
-  minoMoto: IFareVehicle;
-  waitingCharge: IFareWaitingCharge;
-  surcharge: IFareSurcharge;
+
+  minoGoRatePerKm: number;
+  minoGoBookingFee: number;
+  minoGoBaseFee: number;
+  minoGoMinimumFare: number;
+
+  minoXLRatePerKm: number;
+  minoXLBookingFee: number;
+  minoXLBaseFee: number;
+  minoXLMinimumFare: number;
+
+  minoMotoRatePerKm: number;
+  minoMotoBookingFee: number;
+  minoMotoBaseFee: number;
+  minoMotoMinimumFare: number;
+
+  waitingChargeEnabled: boolean;
+  waitingChargeGracePeriod: number;
+  waitingChargeRate: number;
+
+  surchargeEnabled: boolean;
+  surchargeValue: number;
+
   platformCommissionPercentage: number;
   isActive: boolean;
+  isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
 }

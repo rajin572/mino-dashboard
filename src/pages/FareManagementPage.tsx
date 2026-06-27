@@ -76,11 +76,29 @@ export default function FareManagement() {
   const handleOpenEdit = (record: IFare) => {
     form.reset({
       country: record.country,
-      minoGo: record.minoGo,
-      minoXL: record.minoXL,
-      minoMoto: record.minoMoto,
-      waitingCharge: record.waitingCharge,
-      surcharge: record.surcharge,
+
+      minoGoRatePerKm: record.minoGoRatePerKm,
+      minoGoBookingFee: record.minoGoBookingFee,
+      minoGoBaseFee: record.minoGoBaseFee,
+      minoGoMinimumFare: record.minoGoMinimumFare,
+
+      minoXLRatePerKm: record.minoXLRatePerKm,
+      minoXLBookingFee: record.minoXLBookingFee,
+      minoXLBaseFee: record.minoXLBaseFee,
+      minoXLMinimumFare: record.minoXLMinimumFare,
+
+      minoMotoRatePerKm: record.minoMotoRatePerKm,
+      minoMotoBookingFee: record.minoMotoBookingFee,
+      minoMotoBaseFee: record.minoMotoBaseFee,
+      minoMotoMinimumFare: record.minoMotoMinimumFare,
+
+      waitingChargeEnabled: record.waitingChargeEnabled,
+      waitingChargeGracePeriod: record.waitingChargeGracePeriod,
+      waitingChargeRate: record.waitingChargeRate,
+
+      surchargeEnabled: record.surchargeEnabled,
+      surchargeValue: record.surchargeValue,
+
       platformCommissionPercentage: record.platformCommissionPercentage,
     });
     setIsEditMode(true);
@@ -91,10 +109,11 @@ export default function FareManagement() {
   // ── Submit ─────────────────────────────────────────────────────────────────
 
   const handleSubmit = async (values: FareFormValues) => {
+    const body = { ...values, isActive: true, isDeleted: false };
     if (isEditMode && editId) {
-      await tryCatchWrapper(updateFare, { params: { id: editId }, body: values }, "Updating fare...");
+      await tryCatchWrapper(updateFare, { params: { id: editId }, body }, "Updating fare...");
     } else {
-      await tryCatchWrapper(createFare, { body: values }, "Creating fare...");
+      await tryCatchWrapper(createFare, { body }, "Creating fare...");
     }
     setView("list");
     setIsEditMode(false);
@@ -136,30 +155,30 @@ export default function FareManagement() {
     },
     {
       header: "Mino Go",
-      accessorKey: "minoGo",
-      render: (value: IFareVehicle) => `$${value?.ratePerKm ?? 0}/km`,
+      accessorKey: "minoGoRatePerKm",
+      render: (value: number) => `$${value ?? 0}/km`,
     },
     {
       header: "Mino XL",
-      accessorKey: "minoXL",
-      render: (value: IFareVehicle) => `$${value?.ratePerKm ?? 0}/km`,
+      accessorKey: "minoXLRatePerKm",
+      render: (value: number) => `$${value ?? 0}/km`,
     },
     {
       header: "Mino Moto",
-      accessorKey: "minoMoto",
-      render: (value: IFareVehicle) => `$${value?.ratePerKm ?? 0}/km`,
+      accessorKey: "minoMotoRatePerKm",
+      render: (value: number) => `$${value ?? 0}/km`,
     },
     {
       header: "Waiting Charge",
-      accessorKey: "waitingCharge",
-      render: (value: IFareWaitingCharge) =>
-        value?.enabled ? `$${value.rate}/min` : "—",
+      accessorKey: "waitingChargeRate",
+      render: (_: unknown, record: IFare) =>
+        record.waitingChargeEnabled ? `$${record.waitingChargeRate}/min` : "—",
     },
     {
       header: "Surcharge",
-      accessorKey: "surcharge",
-      render: (value: IFareSurcharge) =>
-        value?.enabled ? `${value.value}%` : "—",
+      accessorKey: "surchargeValue",
+      render: (_: unknown, record: IFare) =>
+        record.surchargeEnabled ? `${record.surchargeValue}%` : "—",
     },
     {
       header: "Commission",

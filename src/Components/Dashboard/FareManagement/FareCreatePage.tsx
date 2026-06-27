@@ -18,8 +18,8 @@ interface FareCreatePageProps {
 
 const FareCreatePage = ({ form, isLoading, isEditMode, onSubmit, onCancel }: FareCreatePageProps) => {
   const country = form.getValues("country");
-  const waitingEnabled = form.watch("waitingCharge.enabled");
-  const surchargeEnabled = form.watch("surcharge.enabled");
+  const waitingEnabled = form.watch("waitingChargeEnabled");
+  const surchargeEnabled = form.watch("surchargeEnabled");
 
   return (
     <PageWraper title="">
@@ -60,7 +60,7 @@ const FareCreatePage = ({ form, isLoading, isEditMode, onSubmit, onCancel }: Far
                   <p className="text-xs text-muted-foreground">Turn on to add a surcharge.</p>
                 </div>
                 <Controller
-                  name="surcharge.enabled"
+                  name="surchargeEnabled"
                   control={form.control}
                   render={({ field }) => (
                     <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -70,7 +70,7 @@ const FareCreatePage = ({ form, isLoading, isEditMode, onSubmit, onCancel }: Far
               {surchargeEnabled && (
                 <FormInput
                   control={form.control}
-                  name="surcharge.value"
+                  name="surchargeValue"
                   label="Surcharge value (%)"
                   description="Percentage applied to selected fare components."
                   type="number"
@@ -98,7 +98,7 @@ const FareCreatePage = ({ form, isLoading, isEditMode, onSubmit, onCancel }: Far
                   <p className="text-xs text-muted-foreground">Enable or disable waiting fees.</p>
                 </div>
                 <Controller
-                  name="waitingCharge.enabled"
+                  name="waitingChargeEnabled"
                   control={form.control}
                   render={({ field }) => (
                     <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -109,7 +109,7 @@ const FareCreatePage = ({ form, isLoading, isEditMode, onSubmit, onCancel }: Far
                 <div className="grid grid-cols-2 gap-4">
                   <FormInput
                     control={form.control}
-                    name="waitingCharge.gracePeriod"
+                    name="waitingChargeGracePeriod"
                     label="Grace period (min)"
                     description="Waiting charges start after the free waiting period."
                     type="number"
@@ -117,7 +117,7 @@ const FareCreatePage = ({ form, isLoading, isEditMode, onSubmit, onCancel }: Far
                   />
                   <FormInput
                     control={form.control}
-                    name="waitingCharge.rate"
+                    name="waitingChargeRate"
                     label="Waiting rate ($/min)"
                     description="Applied after the grace period."
                     type="number"
