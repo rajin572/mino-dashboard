@@ -1,19 +1,25 @@
 import { z } from "zod";
 
-const vehicleFields = (prefix: string) => ({
-  [`${prefix}RatePerKm`]: z.coerce.number().min(0, "Required"),
-  [`${prefix}BookingFee`]: z.coerce.number().min(0, "Required"),
-  [`${prefix}BaseFee`]: z.coerce.number().min(0, "Required"),
-  [`${prefix}MinimumFare`]: z.coerce.number().min(0, "Required"),
-});
+const fee = z.coerce.number().min(0, "Required");
 
 export const fareSchema = z
   .object({
     country: z.string().min(1, "Country is required"),
 
-    ...vehicleFields("minoGo"),
-    ...vehicleFields("minoXL"),
-    ...vehicleFields("minoMoto"),
+    minoGoRatePerKm: fee,
+    minoGoBookingFee: fee,
+    minoGoBaseFee: fee,
+    minoGoMinimumFare: fee,
+
+    minoXLRatePerKm: fee,
+    minoXLBookingFee: fee,
+    minoXLBaseFee: fee,
+    minoXLMinimumFare: fee,
+
+    minoMotoRatePerKm: fee,
+    minoMotoBookingFee: fee,
+    minoMotoBaseFee: fee,
+    minoMotoMinimumFare: fee,
 
     waitingChargeEnabled: z.boolean(),
     waitingChargeGracePeriod: z.coerce.number().min(0),
